@@ -1,6 +1,21 @@
 import '../styles/App.scss';
+ import { useState } from 'react';
 
 function App() {
+  // Funcionalidad de la letra 
+  const [letter, setLetter] = useState('');
+   const handlerLetter= (ev) =>{
+   const inputValue = ev.target.value;
+   setLetter(inputValue);
+  };
+  //Estado number error
+  const[ number, numberOfErrors] = useState(0);
+  const handlerNumber= (ev) =>{
+    ev.preventDefault();
+   
+  }
+
+
   return (
     <div className='page'>
       <header>
@@ -13,7 +28,7 @@ function App() {
             <ul className='letters'>
               <li className='letter'>k</li>
               <li className='letter'>a</li>
-              <li className='letter'></li>
+              <li className='letter'>{letter}</li>
               <li className='letter'>a</li>
               <li className='letter'>k</li>
               <li className='letter'>r</li>
@@ -43,8 +58,10 @@ function App() {
               maxLength='1'
               type='text'
               name='last-letter'
-              id='last-letter'
+              id='last-letter'  onChange={handlerLetter}
             />
+            <input type="submit" value="Incrementar" className="button" onClick={handlerNumber} />
+            <div className="container">{number}</div>
           </form>
         </section>
         <section className='dummy error-5'>

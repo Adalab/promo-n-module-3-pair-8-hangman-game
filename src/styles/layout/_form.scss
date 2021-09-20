@@ -1,6 +1,9 @@
 .form {
   margin-bottom: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__input {
     background-color: transparent;
@@ -13,11 +16,11 @@
     animation-duration: 2s;
     animation-iteration-count: infinite;
 
-    &[maxLength='1'] {
+    &[maxLength="1"] {
       width: 5rem;
     }
 
-    &[maxLength='15'] {
+    &[maxLength="15"] {
       width: 25rem;
     }
 
