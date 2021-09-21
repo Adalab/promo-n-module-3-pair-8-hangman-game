@@ -1,20 +1,27 @@
 import '../styles/App.scss';
- import { useState } from 'react';
+import { useState } from 'react';
 
 function App() {
-  // Funcionalidad de la letra 
+  // Funcionalidad de la letra
   const [letter, setLetter] = useState('');
-   const handlerLetter= (ev) =>{
-   const inputValue = ev.target.value;
-   setLetter(inputValue);
+  const [numberOfErrors, setNumberOfError] = useState(0);
+
+  const handlerLetter = (ev) => {
+    const inputValue = ev.target.value;
+    let regex = RegExp('^[a-zA-Z]$'); //No conseguimos que haga esta funcion!, si es uno de estos caracteres pintamelo sinó NO, pq seria un caracter no válido
+    if (regex === inputValue) {
+      setLetter(inputValue);
+    } else {
+      setLetter('');
+    }
   };
   //Estado number error
-  const[ number, numberOfErrors] = useState(0);
-  const handlerNumber= (ev) =>{
-    ev.preventDefault();
-   
-  }
 
+  const handlerNumber = (ev) => {
+    ev.preventDefault();
+    let counter = numberOfErrors + 1;
+    setNumberOfError(counter);
+  };
 
   return (
     <div className='page'>
@@ -58,13 +65,20 @@ function App() {
               maxLength='1'
               type='text'
               name='last-letter'
-              id='last-letter'  onChange={handlerLetter}
+              id='last-letter'
+              value={letter}
+              onChange={handlerLetter}
             />
-            <input type="submit" value="Incrementar" className="button" onClick={handlerNumber} />
-            <div className="container">{number}</div>
+            <input
+              type='submit'
+              value='Incrementar'
+              className='button'
+              onClick={handlerNumber}
+            />
+            <div className='container'></div>
           </form>
         </section>
-        <section className='dummy error-5'>
+        <section className={`dummy error-${numberOfErrors} `}>
           <span className='error-13 eye'></span>
           <span className='error-12 eye'></span>
           <span className='error-11 line'></span>
