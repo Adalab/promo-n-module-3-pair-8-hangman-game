@@ -5,10 +5,26 @@ function App() {
   // Funcionalidad de la letra
   const [letter, setLetter] = useState('');
   const [numberOfErrors, setNumberOfError] = useState(0);
+  const [word, setWord]= useState('katakroker');
+
+  const renderSolutionLetter =()=>{
+    const wordLetter= word.split('');
+    console.log(wordLetter);
+    setWord([...word]);
+  
+    return(
+      wordLetter.map((word, index) => {
+        return(
+        <li className='letter' key={index}>{word + letter}</li>
+        )}));
+  };
 
   const handlerLetter = (ev) => {
     const inputValue = ev.target.value;
     let regex = RegExp('^[a-zA-Z]$'); //No conseguimos que haga esta funcion!, si es uno de estos caracteres pintamelo sinó NO, pq seria un caracter no válido
+    console.log(regex.test(inputValue))
+
+    //console.log(inputValue.match(regex))
     if (regex === inputValue) {
       setLetter(inputValue);
     } else {
@@ -32,17 +48,8 @@ function App() {
         <section>
           <div className='solution'>
             <h2 className='title'>Solución:</h2>
-            <ul className='letters'>
-              <li className='letter'>k</li>
-              <li className='letter'>a</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>a</li>
-              <li className='letter'>k</li>
-              <li className='letter'>r</li>
-              <li className='letter'></li>
-              <li className='letter'>k</li>
-              <li className='letter'>e</li>
-              <li className='letter'>r</li>
+            <ul className='letters'> {renderSolutionLetter()+letter}
+            
             </ul>
           </div>
           <div className='feedback'>
