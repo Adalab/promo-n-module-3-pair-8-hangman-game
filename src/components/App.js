@@ -5,24 +5,24 @@ function App() {
   // Funcionalidad de la letra
   const [letter, setLetter] = useState('');
   const [numberOfErrors, setNumberOfError] = useState(0);
-  const [word, setWord]= useState('katakroker');
+  const [word, setWord] = useState('pepino');
 
-  const renderSolutionLetter =()=>{
-    const wordLetter= word.split('');
+  const renderSolutionLetter = () => {
+    const wordLetter = word.split('');
     console.log(wordLetter);
-    setWord([...word]);
-  
-    return(
-      wordLetter.map((word, index) => {
-        return(
-        <li className='letter' key={index}>{word + letter}</li>
-        )}));
+
+    return wordLetter.map((letter, index) => {
+      return (
+        <li className='letter' key={index}>
+          {letter}
+        </li>
+      );
+    });
   };
 
   const handlerLetter = (ev) => {
     const inputValue = ev.target.value;
     let regex = RegExp('^[a-zA-Z]$'); //No conseguimos que haga esta funcion!, si es uno de estos caracteres pintamelo sinó NO, pq seria un caracter no válido
-    console.log(regex.test(inputValue))
 
     //console.log(inputValue.match(regex))
     if (regex === inputValue) {
@@ -48,9 +48,7 @@ function App() {
         <section>
           <div className='solution'>
             <h2 className='title'>Solución:</h2>
-            <ul className='letters'> {renderSolutionLetter()+letter}
-            
-            </ul>
+            <ul className='letters'> {renderSolutionLetter()}</ul>
           </div>
           <div className='feedback'>
             <h2 className='title'>Letras falladas:</h2>
